@@ -16,7 +16,7 @@ jobs:
   
     runs-on: ubuntu-latest
     env:
-      NAME: Ray
+      NAME: Ray V
     
     steps:
       - name: Run a one-line script
