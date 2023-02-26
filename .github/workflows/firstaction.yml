@@ -1,7 +1,14 @@
 name: Hello Actions
 
 # Controls when the workflow will run
-on: [push]
+on: 
+  push:
+    branches: 
+      - master
+      - build
+  pull_request:
+    types:
+      - closed
 jobs:
   build:
   
