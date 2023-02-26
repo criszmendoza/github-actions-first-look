@@ -16,16 +16,27 @@ jobs:
   
     runs-on: ubuntu-latest
     env:
-      NAME: Ray V
+      name: Ray V
     
     steps:
       - name: Run a one-line script
-        run: echo Hello $NAME!
+        run: | 
+          echo Hello $name!
+          echo Actor: ${{ github.actor }}
+          echo Committed By: ${{ github.event.commits[0].author.name }
+        
+  dump:
+    runs-on: ubuntu-latest
+    steps:
+      - env:
+          GITHUB_CONTEXT: ${{ toJson(github) }}
+        run: echo "$GITHUB_CONTEXT"
+      
   
   pull_request_only:
   
     runs-on: ubuntu-latest
-    if: ${{ github.event_name }} == 'pull_request'
+    if: github.event_name == 'pull_request'
     needs: build
     steps:
       - name: Run a multi-line script
